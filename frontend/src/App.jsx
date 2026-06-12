@@ -9,6 +9,7 @@ import { DashboardPage } from "./pages/DashboardPage.jsx";
 import { InspectionsPage } from "./pages/InspectionsPage.jsx";
 import { ProcurementPage } from "./pages/ProcurementPage.jsx";
 import { ProjectsPage } from "./pages/ProjectsPage.jsx";
+import { RectificationsPage } from "./pages/RectificationsPage.jsx";
 
 const pages = {
   dashboard: DashboardPage,
@@ -17,6 +18,7 @@ const pages = {
   projects: ProjectsPage,
   procurement: ProcurementPage,
   inspections: InspectionsPage,
+  rectifications: RectificationsPage,
 };
 
 export default function App() {

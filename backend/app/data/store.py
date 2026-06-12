@@ -13,6 +13,7 @@ class InMemoryStore:
             "projects": count(4),
             "procurements": count(4),
             "inspections": count(4),
+            "rectifications": count(4),
         }
         self.customers: list[dict[str, Any]] = [
             {
@@ -198,6 +199,50 @@ class InMemoryStore:
                 "issues": "One cabinet door gap exceeds tolerance.",
             },
         ]
+        self.rectifications: list[dict[str, Any]] = [
+            {
+                "id": 1,
+                "project_id": 3,
+                "project_name": "Harbor Loft",
+                "inspection_id": 3,
+                "title": "Cabinet door gap adjustment",
+                "description": "One cabinet door gap exceeds tolerance by 2mm. Need to readjust hinges.",
+                "responsible": "Carpenter Team",
+                "deadline": str(today + timedelta(days=3)),
+                "priority": "medium",
+                "status": "in_progress",
+                "progress": "Hinges adjusted, awaiting re-measurement.",
+                "created_at": str(today - timedelta(days=1)),
+            },
+            {
+                "id": 2,
+                "project_id": 2,
+                "project_name": "Central Park Apartment",
+                "inspection_id": None,
+                "title": "Bathroom waterproofing reinforcement",
+                "description": "Bathroom floor waterproofing needs second coating at wall-floor junction.",
+                "responsible": "Waterproof Team",
+                "deadline": str(today + timedelta(days=5)),
+                "priority": "high",
+                "status": "pending",
+                "progress": "",
+                "created_at": str(today),
+            },
+            {
+                "id": 3,
+                "project_id": 1,
+                "project_name": "North Star Residence Renovation",
+                "inspection_id": None,
+                "title": "Demolition safety fence installation",
+                "description": "Living room demolition area needs additional safety fencing.",
+                "responsible": "Construction Team",
+                "deadline": str(today + timedelta(days=1)),
+                "priority": "high",
+                "status": "completed",
+                "progress": "Safety fence installed and inspected.",
+                "created_at": str(today - timedelta(days=2)),
+            },
+        ]
 
     def list_items(self, collection: str) -> list[dict[str, Any]]:
         return deepcopy(getattr(self, collection))
@@ -221,6 +266,9 @@ class InMemoryStore:
         procurement_budget = sum(item["budget"] for item in self.procurements)
         pending_inspections = sum(1 for item in self.inspections if item["result"] == "pending")
         avg_progress = round(sum(project["progress"] for project in self.projects) / len(self.projects))
+        pending_rectifications = sum(
+            1 for item in self.rectifications if item["status"] in ("pending", "in_progress")
+        )
 
         return {
             "generated_at": datetime.now().isoformat(timespec="seconds"),
@@ -229,6 +277,7 @@ class InMemoryStore:
                 {"label": "Measure bookings", "value": len(self.appointments), "trend": "2 upcoming"},
                 {"label": "Active projects", "value": len(active_projects), "trend": f"{avg_progress}% avg progress"},
                 {"label": "Pending inspections", "value": pending_inspections, "trend": "Quality follow-up"},
+                {"label": "Open rectifications", "value": pending_rectifications, "trend": "Track & resolve"},
             ],
             "procurement_budget": procurement_budget,
             "phase_distribution": [

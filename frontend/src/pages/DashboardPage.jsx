@@ -1,10 +1,10 @@
-import { CalendarClock, CircleDollarSign, ClipboardList, TrendingUp } from "lucide-react";
+import { AlertTriangle, CalendarClock, CircleDollarSign, ClipboardList, TrendingUp } from "lucide-react";
 
 import { ProgressBar } from "../components/ProgressBar.jsx";
 import { StatusBadge } from "../components/StatusBadge.jsx";
 import { useAppData } from "../context/AppContext.jsx";
 
-const metricIcons = [ClipboardList, CalendarClock, TrendingUp, CircleDollarSign];
+const metricIcons = [ClipboardList, CalendarClock, TrendingUp, CircleDollarSign, AlertTriangle];
 
 export function DashboardPage() {
   const { dashboard } = useAppData();

@@ -55,3 +55,16 @@ export const inspectionFields = [
   { name: "result", label: "Result", type: "select", options: ["pending", "passed", "整改", "failed"] },
   { name: "issues", label: "Issues", type: "textarea" },
 ];
+
+export const rectificationFields = [
+  { name: "project_id", label: "Project ID", type: "number" },
+  { name: "project_name", label: "Project", type: "text" },
+  { name: "inspection_id", label: "Inspection ID", type: "number" },
+  { name: "title", label: "Title", type: "text" },
+  { name: "description", label: "Description", type: "textarea" },
+  { name: "responsible", label: "Responsible", type: "text" },
+  { name: "deadline", label: "Deadline", type: "date" },
+  { name: "priority", label: "Priority", type: "select", options: ["low", "medium", "high"] },
+  { name: "status", label: "Status", type: "select", options: ["pending", "in_progress", "completed", "reinspected"] },
+  { name: "progress", label: "Progress notes", type: "textarea" },
+];

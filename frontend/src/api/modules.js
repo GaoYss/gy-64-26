@@ -33,3 +33,9 @@ export const inspectionApi = {
   create: (payload) => api.post("/inspections", payload),
   update: (id, payload) => api.patch(`/inspections/${id}`, payload),
 };
+
+export const rectificationApi = {
+  list: (params) => api.get("/rectifications", { params }),
+  create: (payload) => api.post("/rectifications", payload),
+  update: (id, payload) => api.patch(`/rectifications/${id}`, payload),
+};
